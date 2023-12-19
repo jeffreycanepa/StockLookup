@@ -1,7 +1,7 @@
 # /opt/homebrew/bin/python3
 '''
 --------------------------------------------------------------
--   plotOneStock.py
+-   stockLookup.py
 -       This script looks up the closing price for a stock 
 -       that the user supplies by calling yfinance. The user
 -       enters a stock ticker, then supplies the number of days
@@ -27,7 +27,7 @@
 -   Sep 2023
 --------------------------------------------------------------
 '''
-import plotStockModules.getCompanyData as getCompanyData
+import stockLookupModules.getCompanyData as getCompanyData
 
 # main()
 def main():

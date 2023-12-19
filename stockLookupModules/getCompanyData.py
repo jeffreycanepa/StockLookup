@@ -29,9 +29,9 @@
 --------------------------------------------------------------
 '''
 import yfinance as yf
-import plotStockModules.numDays as numDays
-import plotStockModules.getTicker as getTicker
-import plotStockModules.displayData as displayData
+import stockLookupModules.numDays as numDays
+import stockLookupModules.getTicker as getTicker
+import stockLookupModules.displayData as displayData
 
 # get_data()- Using yfinance, get stock data for provided stock ticker.
 # Requires: 

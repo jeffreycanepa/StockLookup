@@ -39,8 +39,8 @@ import seaborn as sns; sns.set()
 import pandas as pd
 from tkinter import *
 from tkinter.simpledialog import askinteger, askstring
-import plotStockModules.getCompanyData as getCompanyData
-import plotStockModules.numDays as numDays
+import stockLookupModules.getCompanyData as getCompanyData
+import stockLookupModules.numDays as numDays
 
 # plot_data()- Plot stock data using Matplotlib and add it to Tkinter window
 # Requires:
