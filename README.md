@@ -28,6 +28,6 @@ A set of scripts that use yfinance to get the last x days of stock data for prov
 #### numDays.py
 This script uses tkinter to ask the user which of the stocks found in file stockktickers.csv to look up data for.  User has the option of adding a trend line to the plot.  Lookups can be from 2 to 10,000 days.
 ##### Requires: 
-- tkinter: Tcl/Tk 8.6
+- Tcl/Tk
 
 
