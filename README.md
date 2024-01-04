@@ -3,6 +3,8 @@ A python3 script in which a user is promted to enter a stock ticker and a number
 
 ![StockLookup plot](screenShots/StockLookupPlot.png)
 
+![StockLookup plot Ubuntu](screenShots/StockLookupPlot_Ubuntu.png)
+
 ### Modules
 #### displayData.py:
 This module creates a window using tkinter. Matplotlib is then used to plot data within the tkinter window. Tkinter is also used to ask the 
