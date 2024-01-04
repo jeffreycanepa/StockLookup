@@ -11,13 +11,10 @@
 -       and is therefore listed as a requirement.
 -
 -   Required Packages (required in imported Modules):
--       yfinance: 0.2.31
+-       tkinter: Tcl/Tk 8.6
 -       matplotlib: 3.8.0
 -       seaborn: 0.13.0
 -       pandas: 2.1.1
--       customtkinter: 5.2.1
--       tkinter: built-in
--       datetime: built-in
 -
 -   Required Modules:
 -       numDays.py
@@ -38,7 +35,6 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationTool
 import seaborn as sns; sns.set()
 import pandas as pd
 from tkinter import *
-from tkinter.simpledialog import askinteger, askstring
 import stockLookupModules.getCompanyData as getCompanyData
 import stockLookupModules.numDays as numDays
 
