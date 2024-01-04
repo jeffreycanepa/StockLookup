@@ -8,7 +8,7 @@
 -       
 -
 -   Required Packages (required in imported Modules):
--       tkinter: built-in
+-       tkinter: Tcl/Tk 8.6
 -
 -   Required Modules:
 -
