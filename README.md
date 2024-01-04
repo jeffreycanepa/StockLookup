@@ -1,9 +1,7 @@
 # StockLookup
 A python3 script in which a user is promted to enter a stock ticker and a number of days. Matplotlib is then used to display a plot of the adjusted closing prices for the number of days specified.
 
-![StockLookup plot](screenShots/StockLookupPlot.png "StockLookup MacOS")
-
-![StockLookup plot Ubuntu](screenShots/StockLookupPlot_Ubuntu.png "StockLookup Ubuntu") 
+![StockLookup plot Ubuntu](screenShots/StockLookupPlot_Ubuntu.png "StockLookup Ubuntu")
 
 ### Modules
 #### displayData.py:
