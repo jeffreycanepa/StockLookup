@@ -89,12 +89,12 @@ def get_num_days():
                                         validatecommand=(my_valid,'%S'), 
                                         textvariable=myDays)
     entryField.insert(0, 365)
+    entryField.focus()
     entryField.pack()
 
     # Add button to window.  Add commands to validate data input and to quit window when validation is completed        
     btn = Button(days_window, text="Enter", command=getValue)
     btn.bind('<Return>', click_return)   
-    btn.focus()
     btn.pack(padx=10,pady=20)
 
     days_window.mainloop()

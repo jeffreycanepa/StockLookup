@@ -62,6 +62,7 @@ def getTicker():
     # Add field to get ticker.  Make it accessible with tkinter.StringVar()
     myTicker = StringVar()
     entryField = Entry(ticker_window, width = 6, textvariable=myTicker)
+    entryField.focus()
     entryField.pack()
 
     # Validate the data entered into the field.
@@ -99,7 +100,6 @@ def getTicker():
     # Add button to window.  Add commands to validate data input and to quit window when validation is completed        
     btn = Button(ticker_window, text="Enter", command=validate)
     btn.bind('<Return>', click_return)
-    btn.focus()
     btn.pack(padx=10,pady=20)
 
     ticker_window.mainloop()
