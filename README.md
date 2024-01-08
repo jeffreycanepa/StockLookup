@@ -30,4 +30,5 @@ This script uses tkinter to ask the user which of the stocks found in file stock
 ##### Requires: 
 - Tcl/Tk
 
-
+# stockLookup_v1.app
+Using pyInstaller with stockLookup_v1.py I created stockLookup_v1.app.  This is a MacOS executable that was created in Sonoma 14.2.1 with Python 3.11.6 on ARM64. To execute you will need to download dist/stockLookup_v1.app and double click on the app.
