@@ -1,0 +1,3 @@
+([('stockLookup_v1',
+   '/Users/jcanepa/Dev/StockLookup/dist/stockLookup_v1',
+   'EXECUTABLE')],)
