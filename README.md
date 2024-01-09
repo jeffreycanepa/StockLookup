@@ -1,4 +1,4 @@
-# StockLookup
+# stockLookup_v1.py
 A python3 script in which a user is promted to enter a stock ticker and a number of days. Matplotlib is then used to display a plot of the adjusted closing prices for the number of days specified.
 
 ![StockLookup plot Ubuntu](screenShots/StockLookupPlot_Ubuntu.png "StockLookup Ubuntu")
@@ -30,5 +30,12 @@ This script uses tkinter to ask the user which of the stocks found in file stock
 ##### Requires: 
 - Tcl/Tk
 
-# stockLookup_v1.app
-Using pyInstaller with stockLookup_v1.py I created stockLookup_v1.app.  This is a MacOS executable that was created in Sonoma 14.2.1 with Python 3.11.6 on ARM64. To execute you will need to download dist/stockLookup_v1.app and double click on the app.
+# StockLookup.app / StockLookup_x86.app
+Using pyInstaller with stockLookup_v1.py I created stockLookup_v1.app and stockLookup_x86.app. These are MacOS executables that do not require the user to download the python packages I used in order for the app to run.
+These apps will only work on the appropiate processor architectures.
+
+### StockLookup.app
+ Created in Sonoma 14.2.1 with Python 3.11.6 on ARM64 (M2). To execute you will need to download dist/StockLookup.app and double click on the app.  I do not have an M1 or M3 to validate that the app works correclty on those platforms, so use at your own risk.
+
+### StockLookup_x86.app
+ Created in Monterey 12.7.2 with Python 3.11.6 on Intel Core i5. To execute you will need to download dist/StockLookup.app and double click on the app.
