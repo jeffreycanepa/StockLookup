@@ -32,7 +32,7 @@
 '''
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-import seaborn as sns; sns.set()
+import seaborn as sns
 import pandas as pd
 from tkinter import *
 import stockLookupModules.getCompanyData as getCompanyData
@@ -52,18 +52,14 @@ def plot_data(window):
     dates = numDays.dates
     fig, ax = plt.subplots(figsize=(8,7))
     sns.set_style('darkgrid')
-    # ax.set_title('Closing Prices', fontsize=7)
-
-    # convert the regression line start date to ordinal
-    x1 = pd.to_datetime(dates[0]).toordinal()
 
     # convert the datetime index to ordinal values, which can be used to plot a regression line
     company.index = company.index.map(pd.Timestamp.toordinal)
-    data=company.loc[x1:].reset_index()
+    # data=company.loc[x1:].reset_index()
 
-     # Add Closing price for stock as a line and as a linear regression (trend line)
-    ax1 = sns.lineplot(data=company,x=company.index,y='Adj Close', color='blue', label=company_name)
-    sns.regplot(data=company, x=company.index, y='Adj Close', color='black', scatter=False, ci=False)
+    # Add Closing price for stock as a line and as a linear regression (trend line)
+    ax1 = sns.lineplot(data=company[getCompanyData.getTicker.ticker]["Close"], color='blue', label=company_name)
+    # sns.regplot(data=company, x=company.index, y='Close', color='black', scatter=False, ci=False)
    
     ax1.set_xlim(company.index[0], company.index[-1])
 

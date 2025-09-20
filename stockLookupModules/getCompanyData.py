@@ -48,37 +48,17 @@ def get_stock_data():
     print('Fetching data for', item, '...')
     stockData = yf.download(tickers = item,
                          start= numDays.dates[2],
-                         end= numDays.dates[3])
+                         end= numDays.dates[3],
+                         group_by="ticker")
     cmp = yf.Ticker(item)
-    try:
-        # company_name = cmp.info['longName']
+    company_name = cmp.info['longName']
 
-        # yfinance info seems to be flakey, so get company name by other means
-        company_name = get_company_name(item)
-    except:
-        company_name = item
     return stockData
 
-# get_company_name()- Get company name using it's stock ticker
-# Requires: 
-#   ticker- the stock ticker to fetch data for 
-#
-# Returns:
-#   result- The name of the company
-#
-def get_company_name(ticker):
-    import requests, re
-
-    url = 'https://finance.yahoo.com/quote/WMT/'
-    url = url.replace("WMT",ticker)
-
-    req = requests.get(url)
-    html = req.text
-
-    name = re.search(r'\<title>([^\s]+)\ ([^\s]+)', html)
-    result = str(name.group(0))
-    result = result.replace("<title>", "")
-    return result
+# fetch_and_plot_data()- Calls all the methods needed to get the stock
+#                        ticker, get the start/end dates and display the data.
+# Requires:
+#   None  
 
 def fetch_and_plot_data():
     global numdays
