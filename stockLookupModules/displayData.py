@@ -11,11 +11,11 @@
 -       and is therefore listed as a requirement.
 -
 -   Required Packages (required in imported Modules):
--       yfinance: 0.2.31
+-       yfinance: 0.2.65
 -       tkinter: Tcl/Tk 8.6
 -       matplotlib: 3.8.0
--       pandas: 2.1.1
--       numpy: 1.25.2
+-       pandas: 2.1.2
+-       numpy: 1.26.4
 -
 -   Required Modules:
 -       numDays.py

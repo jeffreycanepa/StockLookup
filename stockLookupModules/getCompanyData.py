@@ -9,7 +9,7 @@
 -       
 -
 -   Required Packages (required in imported Modules):
--       yfinance: 0.2.31
+-       yfinance: 0.2.65
 -       requests: 2.31.0
 -       re: built-in
 -
