@@ -9,7 +9,7 @@
 -       
 -
 -   Required Packages (required in imported Modules):
--       yfinance: 0.2.65
+-       yfinance: 0.2.31
 -       requests: 2.31.0
 -       re: built-in
 -
@@ -25,7 +25,7 @@
 -
 -   Jeff Canepa
 -   jeff.canepa@gmail.com
--   Oct 2025
+-   Dec 2023
 --------------------------------------------------------------
 '''
 import yfinance as yf
@@ -46,16 +46,39 @@ def get_stock_data():
     item = getTicker.ticker
     # Pseudo status
     print('Fetching data for', item, '...')
-    stockObject = yf.Ticker(item)
-    stockData = stockObject.history(start= numDays.dates[2],
-                                   end= numDays.dates[3])
-    company_name = stockObject.info['longName']
+    stockData = yf.download(tickers = item,
+                         start= numDays.dates[2],
+                         end= numDays.dates[3])
+    cmp = yf.Ticker(item)
+    try:
+        # company_name = cmp.info['longName']
+
+        # yfinance info seems to be flakey, so get company name by other means
+        company_name = get_company_name(item)
+    except:
+        company_name = item
     return stockData
 
-# fetch_and_plot_data()- Calls all the methods needed to get the stock
-#                        ticker, get the start/end dates and display the data.
-# Requires:
-#   None  
+# get_company_name()- Get company name using it's stock ticker
+# Requires: 
+#   ticker- the stock ticker to fetch data for 
+#
+# Returns:
+#   result- The name of the company
+#
+def get_company_name(ticker):
+    import requests, re
+
+    url = 'https://finance.yahoo.com/quote/WMT/'
+    url = url.replace("WMT",ticker)
+
+    req = requests.get(url)
+    html = req.text
+
+    name = re.search(r'\<title>([^\s]+)\ ([^\s]+)', html)
+    result = str(name.group(0))
+    result = result.replace("<title>", "")
+    return result
 
 def fetch_and_plot_data():
     global numdays

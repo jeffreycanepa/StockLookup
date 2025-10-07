@@ -9,10 +9,10 @@
 -       to plot the data within a tkinter window. 
 -
 -   Required Packages (required in imported Modules):
--       yfinance: 0.2.65
+-       yfinance: 0.2.31
 -       matplotlib: 3.8.0
--       numpy: 1.26.4
--       pandas: 2.1.2
+-       seaborn: 0.13.0
+-       pandas: 2.1.1
 -       tkinter: built-in
 -       datetime: built-in
 -
@@ -24,7 +24,7 @@
 -
 -   Jeff Canepa
 -   jeff.canepa@gmail.com
--   Oct 2025
+-   Sep 2023
 --------------------------------------------------------------
 '''
 import stockLookupModules.getCompanyData as getCompanyData

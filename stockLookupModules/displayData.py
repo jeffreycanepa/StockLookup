@@ -11,11 +11,10 @@
 -       and is therefore listed as a requirement.
 -
 -   Required Packages (required in imported Modules):
--       yfinance: 0.2.65
 -       tkinter: Tcl/Tk 8.6
 -       matplotlib: 3.8.0
--       pandas: 2.1.2
--       numpy: 1.26.4
+-       seaborn: 0.13.0
+-       pandas: 2.1.1
 -
 -   Required Modules:
 -       numDays.py
@@ -28,14 +27,13 @@
 -
 -   Jeff Canepa
 -   jeff.canepa@gmail.com
--   Oct 2025
+-   Dec 2023
 --------------------------------------------------------------
 '''
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
+import seaborn as sns; sns.set()
 import pandas as pd
-import numpy as np
 from tkinter import *
 import stockLookupModules.getCompanyData as getCompanyData
 import stockLookupModules.numDays as numDays
@@ -49,46 +47,38 @@ import stockLookupModules.numDays as numDays
 # Returns:
 #
 def plot_data(window):
-    # Pull in data from getCompanyData and NumDays modules
     company_name = getCompanyData.company_name
     company = getCompanyData.stockData
     dates = numDays.dates
+    fig, ax = plt.subplots(figsize=(8,7))
+    sns.set_style('darkgrid')
+    # ax.set_title('Closing Prices', fontsize=7)
 
-    # Set myDates to the index of the data
-    myDates = company.index
+    # convert the regression line start date to ordinal
+    x1 = pd.to_datetime(dates[0]).toordinal()
 
     # convert the datetime index to ordinal values, which can be used to plot a regression line
-    company.index.map(pd.Timestamp.toordinal)
+    company.index = company.index.map(pd.Timestamp.toordinal)
+    data=company.loc[x1:].reset_index()
 
-    # Create a plot and add Closing price for stock
-    fig, ax = plt.subplots(figsize=(8,7))
-    ax.plot(company['Close'], color='blue', label=company_name)
-
-    # Set plot title
-    ax.set_title('{0} Closing Prices: {1} - {2}'.format(company_name, dates[4], dates[5]), size='large', color='black')
-
-    # Set myDates values to numeric value for use in regression line
-    myDates = mdates.date2num(myDates)
-    
-    # Plot the regression line for Company
-    coefficients_close = np.polyfit(myDates, company['Close'], 1)
-    p_close = np.poly1d(coefficients_close)
-    ax.plot(myDates, p_close(myDates), linestyle='--', color='black')
+     # Add Closing price for stock as a line and as a linear regression (trend line)
+    ax1 = sns.lineplot(data=company,x=company.index,y='Adj Close', color='blue', label=company_name)
+    sns.regplot(data=company, x=company.index, y='Adj Close', color='black', scatter=False, ci=False)
    
-    # Configure tick parameters
+    ax1.set_xlim(company.index[0], company.index[-1])
+
+    # convert the axis back to datetime
+    xticks = ax1.get_xticks()
+    labels = [pd.Timestamp.fromordinal(int(label)).strftime('%b %d, \'%y') for label in xticks]
+    ax1.set_xticks(xticks)
+    ax1.set_xticklabels(labels)
     ax.tick_params(axis='x', labelrotation=45)
     ax.tick_params(axis='both', labelsize=7)
 
-    # Set label and title with font sizes
-    ax.set_xlabel('Date', fontsize=12)
-    ax.set_ylabel('Price ($ USD)', fontsize=12)
-    ax.legend()
-    ax.grid(True)
-
-    # Format x-axis labels as dates using mm-dd-yy format
-    date_form = mdates.DateFormatter("%m-%d-%Y")
-    ax.xaxis.set_major_formatter(date_form)
-    fig.autofmt_xdate()
+    sns.despine()
+    plt.title('{0} Closing Prices: {1} - {2}'.format(company_name, dates[4], dates[5]), size='large', color='black')
+    plt.ylabel('Stock Price $ (USD)')
+    plt.xlabel('')
     
     # Create canvas and add it to Tkinter window
     canvas = FigureCanvasTkAgg(fig, master=window)
