@@ -30,9 +30,10 @@
 -   Dec 2023
 --------------------------------------------------------------
 '''
+
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-import seaborn as sns; sns.set()
+import seaborn as sns;
 import pandas as pd
 from tkinter import *
 import stockLookupModules.getCompanyData as getCompanyData
@@ -51,8 +52,6 @@ def plot_data(window):
     company = getCompanyData.stockData
     dates = numDays.dates
     fig, ax = plt.subplots(figsize=(8,7))
-    sns.set_style('darkgrid')
-    # ax.set_title('Closing Prices', fontsize=7)
 
     # convert the regression line start date to ordinal
     x1 = pd.to_datetime(dates[0]).toordinal()
@@ -61,10 +60,11 @@ def plot_data(window):
     company.index = company.index.map(pd.Timestamp.toordinal)
     data=company.loc[x1:].reset_index()
 
-     # Add Closing price for stock as a line and as a linear regression (trend line)
+    # Add Closing price for stock as a line and as a linear regression (trend line)
     ax1 = sns.lineplot(data=company,x=company.index,y='Adj Close', color='blue', label=company_name)
     sns.regplot(data=company, x=company.index, y='Adj Close', color='black', scatter=False, ci=False)
    
+    # set the x-axis limits to the start and end dates
     ax1.set_xlim(company.index[0], company.index[-1])
 
     # convert the axis back to datetime
@@ -72,13 +72,16 @@ def plot_data(window):
     labels = [pd.Timestamp.fromordinal(int(label)).strftime('%b %d, \'%y') for label in xticks]
     ax1.set_xticks(xticks)
     ax1.set_xticklabels(labels)
+    
+    # Set some tick parameters
     ax.tick_params(axis='x', labelrotation=45)
     ax.tick_params(axis='both', labelsize=7)
 
-    sns.despine()
+    # Set titles, labels and grid
     plt.title('{0} Closing Prices: {1} - {2}'.format(company_name, dates[4], dates[5]), size='large', color='black')
     plt.ylabel('Stock Price $ (USD)')
     plt.xlabel('')
+    plt.grid(True)
     
     # Create canvas and add it to Tkinter window
     canvas = FigureCanvasTkAgg(fig, master=window)
