@@ -29,13 +29,3 @@ A set of scripts that use yfinance to get the last x days of stock data for prov
 This script uses tkinter to ask the user which of the stocks found in file stockktickers.csv to look up data for.  User has the option of adding a trend line to the plot.  Lookups can be from 2 to 10,000 days.
 ##### Requires: 
 - Tcl/Tk
-
-# StockLookup.app / StockLookup_x86.app
-Using pyInstaller with stockLookup_v1.py I created stockLookup_v1.app and stockLookup_x86.app. These are MacOS executables that do not require the user to download the python packages I used in order for the app to run.
-These apps will only work on the appropiate processor architectures.
-
-### StockLookup.app
- Created in Sonoma 14.2.1 with Python 3.11.6 on ARM64 (M2). To execute you will need to download dist/StockLookup.app and double click on the app.  I do not have an M1 or M3 to validate that the app works correclty on those platforms, so use at your own risk.
-
-### StockLookup_x86.app
- Created in Monterey 12.7.2 with Python 3.11.6 on Intel Core i5. To execute you will need to download dist/StockLookup.app and double click on the app.
