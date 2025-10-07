@@ -11,7 +11,7 @@
 -   Required Packages (required in imported Modules):
 -       yfinance: 0.2.31
 -       matplotlib: 3.8.0
--       seaborn: 0.13.0
+-       numpy: 1.25.2
 -       pandas: 2.1.1
 -       tkinter: built-in
 -       datetime: built-in
@@ -24,7 +24,7 @@
 -
 -   Jeff Canepa
 -   jeff.canepa@gmail.com
--   Sep 2023
+-   Oct 2025
 --------------------------------------------------------------
 '''
 import stockLookupModules.getCompanyData as getCompanyData

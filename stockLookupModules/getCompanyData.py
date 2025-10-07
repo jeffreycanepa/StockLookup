@@ -25,7 +25,7 @@
 -
 -   Jeff Canepa
 -   jeff.canepa@gmail.com
--   Dec 2023
+-   Oct 2025
 --------------------------------------------------------------
 '''
 import yfinance as yf
@@ -46,13 +46,10 @@ def get_stock_data():
     item = getTicker.ticker
     # Pseudo status
     print('Fetching data for', item, '...')
-    stockData = yf.download(tickers = item,
-                         start= numDays.dates[2],
-                         end= numDays.dates[3],
-                         group_by="ticker")
-    cmp = yf.Ticker(item)
-    company_name = cmp.info['longName']
-
+    stockObject = yf.Ticker(item)
+    stockData = stockObject.history(start= numDays.dates[2],
+                                   end= numDays.dates[3])
+    company_name = stockObject.info['longName']
     return stockData
 
 # fetch_and_plot_data()- Calls all the methods needed to get the stock

@@ -10,8 +10,8 @@ user for a stock ticker and the number of days for which to looking up data for.
 ##### Requires: 
 - Tcl/Tk
 - matplotlib
-- seaborn
 - pandas
+- numpy
 
 #### getCompanyData.py-  
 This script uses yFinance to get financial data then saves the data to a xlsx file using openpyxl.  Requires a .csv file with stock ticker/company name(stocktickers.csv).  Produces .xlsx file (myStocks.xlsx) with a tab for each company listed in the stocktickers.csv file.
