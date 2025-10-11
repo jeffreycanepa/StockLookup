@@ -8,11 +8,11 @@
 -       to look stock data for.  The script then uses matplotlib 
 -       to plot the data within a tkinter window. 
 -
--   Required Packages (required in imported Modules):
+-   Required Packages (required by the imported Modules)
 -       yfinance: 0.2.31
 -       matplotlib: 3.8.0
--       seaborn: 0.13.0
 -       pandas: 2.1.1
+-       numpy: 1.26.4
 -       tkinter: built-in
 -       datetime: built-in
 -

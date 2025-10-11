@@ -9,8 +9,8 @@
 -       and matplotlib.  Dates are saved to an array
 -       
 -
--   Required Packages (required in imported Modules):
--       tkinter: Tcl/Tk 8.6
+-   Required Packages:
+-       tkinter: built-in
 -       datetime: built-in
 -
 -   Required Modules:

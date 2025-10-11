@@ -8,10 +8,8 @@
 -       ticker, get the start/end dates and display the data.
 -       
 -
--   Required Packages (required in imported Modules):
+-   Required Packages:
 -       yfinance: 0.2.31
--       requests: 2.31.0
--       re: built-in
 -
 -   Required Modules:
 -       numDays.py
@@ -20,7 +18,6 @@
 -
 -   Methods:
 -       get_stock_data()
--       get_company_name()
 -       fetch_and_plot_data()
 -
 -   Jeff Canepa

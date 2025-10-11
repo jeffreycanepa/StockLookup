@@ -7,8 +7,8 @@
 -       where on the screen to display the dialog (to my preferences)
 -       
 -
--   Required Packages (required in imported Modules):
--       tkinter: Tcl/Tk 8.6
+-   Required Packages:
+-       tkinter: built-in
 -
 -   Required Modules:
 -
