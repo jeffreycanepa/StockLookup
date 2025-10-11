@@ -33,8 +33,10 @@
 
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk)
-import seaborn as sns;
+from matplotlib.ticker import MaxNLocator
+import matplotlib.dates as mdates
 import pandas as pd
+import numpy as np
 from tkinter import *
 import stockLookupModules.getCompanyData as getCompanyData
 import stockLookupModules.numDays as numDays
@@ -53,35 +55,30 @@ def plot_data(window):
     dates = numDays.dates
     fig, ax = plt.subplots(figsize=(8,7))
 
-    # convert the regression line start date to ordinal
-    x1 = pd.to_datetime(dates[0]).toordinal()
-
     # convert the datetime index to ordinal values, which can be used to plot a regression line
-    company.index = company.index.map(pd.Timestamp.toordinal)
-    data=company.loc[x1:].reset_index()
+    company.index.map(pd.Timestamp.toordinal)
 
-    # Add Closing price for stock as a line and as a linear regression (trend line)
-    ax1 = sns.lineplot(data=company,x=company.index,y='Adj Close', color='blue', label=company_name)
-    sns.regplot(data=company, x=company.index, y='Adj Close', color='black', scatter=False, ci=False)
-   
-    # set the x-axis limits to the start and end dates
-    ax1.set_xlim(company.index[0], company.index[-1])
+    # Add Closing price for stock as a line
+    ax.plot(company.index, company['Close'], color='blue', label=company_name)
 
-    # convert the axis back to datetime
-    xticks = ax1.get_xticks()
-    labels = [pd.Timestamp.fromordinal(int(label)).strftime('%b %d, \'%y') for label in xticks]
-    ax1.set_xticks(xticks)
-    ax1.set_xticklabels(labels)
-    
-    # Set some tick parameters
+    # Set mydates values to numeric value for use in regression line
+    mydates = mdates.date2num(company.index)
+
+    # Add a linear regression line for the closing price
+    coefficients_close = np.polyfit(mydates, company['Close'], 1)
+    p_close = np.poly1d(coefficients_close)
+    ax.plot(mydates, p_close(mydates), color='black', linestyle='--')
+
+    # Configure title, tick parameters, plot labels, ect.
+    ax.set_title('{0} Closing Prices\n{1} - {2}'.format(company_name, dates[4], dates[5]), size='large', color='black')
+    ax.set(ylabel='Stock Price ($ USD)', xlabel='Date', facecolor='0.95')
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%b %d \'%y'))
+    ax.yaxis.set_major_formatter('${x:1.0f}.00') # Format y-axis labels as $XX.00
+    ax.yaxis.set_major_locator(MaxNLocator(nbins=15))
+    ax.xaxis.set_major_locator(MaxNLocator(nbins=15))
     ax.tick_params(axis='x', labelrotation=45)
     ax.tick_params(axis='both', labelsize=7)
-
-    # Set titles, labels and grid
-    plt.title('{0} Closing Prices: {1} - {2}'.format(company_name, dates[4], dates[5]), size='large', color='black')
-    plt.ylabel('Stock Price $ (USD)')
-    plt.xlabel('')
-    plt.grid(True)
+    ax.grid(True, linestyle='--', linewidth=0.5)
     
     # Create canvas and add it to Tkinter window
     canvas = FigureCanvasTkAgg(fig, master=window)
@@ -122,7 +119,7 @@ def set_winsize(cwindow):
 def plot_window():
     # Create the window
     plotWindow = Tk()
-    plotWindow.title(getCompanyData.company_name +  ' Closing Prices')
+    plotWindow.title('Past ' + str(numDays.days) + ' Days')
     
     # size the window
     plotWindow.geometry(set_winsize(plotWindow))

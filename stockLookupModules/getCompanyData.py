@@ -47,9 +47,7 @@ def get_stock_data():
     # Pseudo status
     print('Fetching data for', item, '...')
     stockObject = yf.Ticker(item)
-    stockData = stockObject.history(start= numDays.dates[2],
-                                   end= numDays.dates[3],
-                                   auto_adjust= False)
+    stockData = stockObject.history(start= numDays.dates[2], end= numDays.dates[3])
     company_name = stockObject.info['longName']
     return stockData
 
